@@ -1,8 +1,6 @@
-import { client } from "../index";
+import { queryBuilder } from '../queryBuilder';
 
-client.connect();
-
-client.query(
+queryBuilder(
   ` CREATE TABLE cars
   (
     id         INT     NOT NULL,
@@ -79,14 +77,5 @@ ALTER TABLE cars
   ADD CONSTRAINT FK_users_TO_cars
     FOREIGN KEY (driver_id)
     REFERENCES users (id);
- `,
-  (err, res) => {
-    if (err) {
-      client.end
-      throw err
-    } else {
-      client.end()
-      return res;
-    }
-  }
+`
 );
