@@ -24,10 +24,10 @@
     "clean": "rimraf dist",
     "lint": "eslint src",
     "start": "node ./dist/server.js",
-    "test": "cross-env NODE_ENV=test jest --coverage --forceExit --detectOpenHandles  --runInBand"
+    "test": "cross-env NODE_ENV=test jest --coverage --forceExit --detectOpenHandles  --runInBand",
+    "db:create": "babel-node ./src/scripts/createdatabasescript.js"
   },
   "devDependencies": {
-    "babel-node": "^0.0.1-security",
     "babel-preset-airbnb": "^5.0.0",
     "eslint": "^7.29.0",
     "jest": "^27.0.5",
