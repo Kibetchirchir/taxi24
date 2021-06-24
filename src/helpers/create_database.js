@@ -1,32 +1,15 @@
 import { client } from "../database";
 import dotenv from "dotenv/config";
+import queryBuilder from '../database'
 
 const { DATABASE_NAME } = process.env;
 
 export const createDatabase = () => {
-  client.connect();
-
-  client.query(`Create database ${DATABASE_NAME}`, (err, res) => {
-    if (err) {
-      throw err;
-    } else {
-      return res;
-    }
-    client.end;
-  });
+  queryBuilder(`DROP database ${DATABASE_NAME}`)
 };
 
 export const dropDatabase = () => {
 
-
-  client.query(`DROP database ${DATABASE_NAME}`, (err, res) => {
-    if (err) {
-      throw err;
-    } else {
-      return res;
-    }
-    client.end;
-  });
+    queryBuilder(`DROP database ${DATABASE_NAME}`)
 };
 
-dropDatabase()
