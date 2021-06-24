@@ -1,14 +1,14 @@
 import { client } from './index'
 
-export const queryBuilder = (query) => {
-    client.connect();
-    client.query(query, (err, res) => {
-        if (err) {
-          client.end();
-          throw err;
-        } else {
-          client.end();
-          return res;
-        }
-      });
+export const queryBuilder =  (query) => {
+  client.connect();
+    return new Promise((resolve, reject) => {
+        client.query(query, async (err, res) => {
+            if (err) {
+              reject(err); 
+            } else {
+              resolve (res);
+            }
+          });
+    })
 }
