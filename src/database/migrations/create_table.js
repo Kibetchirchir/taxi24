@@ -1,10 +1,10 @@
-import { queryBuilder } from '../queryBuilder';
+import { queryBuilder } from "../queryBuilder";
 
 queryBuilder(
   ` CREATE TABLE cars
   (
-    id         INT     NOT NULL,
-    car_reg_no VARCHAR NULL    ,
+    id       SERIAL     NOT NULL,
+    car_reg_no VARCHAR NULL  UNIQUE  ,
     driver_id  INT     NULL    ,
     created_at    TIMESTAMP    NOT NULL,
     updated_at    TIMESTAMP    NOT NULL,
@@ -12,15 +12,15 @@ queryBuilder(
   );  
   CREATE TABLE role
 (
-  id   INT NOT NULL,
-  name  varchar   NOT NULL,
+  id   SERIAL NOT NULL ,
+  name  varchar   NOT NULL UNIQUE,
   created_at    TIMESTAMP    NOT NULL,
   updated_at    TIMESTAMP    NOT NULL,
   PRIMARY KEY (id)
 );    
 CREATE TABLE trips
 (
-  id        INT     NOT NULL,
+  id        SERIAL     NOT NULL ,
   driver_id INT     NULL    ,
   rider_id  INT     NULL    ,
   from_location      VARCHAR NULL ,
@@ -32,11 +32,11 @@ CREATE TABLE trips
 
 CREATE TABLE users
 (
-  id            INT         NOT NULL,
+  id            SERIAL         NOT NULL ,
   first_name    VARCHAR(21) NOT NULL,
   second_name   VARCHAR(21) NULL    ,
-  phone_number  BIGINT      NOT NULL,
-  email_adress  VARCHAR     NULL    ,
+  phone_number  BIGINT      NOT NULL UNIQUE,
+  email_adress  VARCHAR     NULL ,
   password      VARCHAR     NULL    ,
   geo_long_lat VARCHAR     NULL ,
   created_at    TIMESTAMP    NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE users
 
 CREATE TABLE users_role
 (
-  id      INT     NOT NULL,
+  id      SERIAL     NOT NULL ,
   user_id INT     NULL    ,
   role_id INT     NULL    ,
   status  VARCHAR NULL    ,
