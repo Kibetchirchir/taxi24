@@ -10,16 +10,16 @@ class DriverController {
 
         await UserService.createUser(req.body);
 
-        const user = await UserService.getUserByPhoneNumber({phone_number})
+        const [user] = await UserService.getUserByPhoneNumber({phone_number});
 
-        console.log(user);
-
-
+        
         await Role.addRole(user_id, 1);
+        
         return jsonResponse({
             res,
             status: 200,
-            message: "Driver created successfully"
+            message: "Driver created successfully",
+            data: userData
         })
     }
 }

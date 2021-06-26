@@ -1,14 +1,5 @@
-import { client } from './index'
+import { sequelize } from '../database/models';
 
 export const queryBuilder =  (query) => {
-  client.connect();
-    return new Promise((resolve, reject) => {
-        client.query(query, async (err, res) => {
-            if (err) {
-              reject(err); 
-            } else {
-              resolve (res);
-            }
-          });
-    })
+    return sequelize.query(query);
 }
