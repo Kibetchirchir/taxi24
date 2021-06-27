@@ -26,7 +26,7 @@ class DriverController {
     }
 
     static async getDriver(req, res){
-        const { page = 1, status} = req.query;
+        const { page = 1, status, id} = req.query;
         const offset = PAGELIMIT * (page - 1);
 
         let extraField = '';
@@ -35,9 +35,9 @@ class DriverController {
             extraField = `AND users_role.status = '${status}'`
         }
 
-        console.log(req);
-
-        console.log('>>>>>',status);
+        if(id){
+            extraField = `AND users.id = '${id}'`
+        }
 
         const driver_role_id = 1;
 
