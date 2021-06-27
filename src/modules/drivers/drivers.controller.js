@@ -26,10 +26,11 @@ class DriverController {
     }
 
     static async getDriver(req, res){
-        const { page = 1, status, id} = req.query;
+        const { page = 1, status, id, type} = req.query;
         const offset = PAGELIMIT * (page - 1);
 
         let extraField = '';
+        let roleId  =  type  === 'driver'? 1 : 2;
 
         if( status ){
             extraField = `AND users_role.status = '${status}'`
@@ -39,10 +40,7 @@ class DriverController {
             extraField = `AND users.id = '${id}'`
         }
 
-        const driver_role_id = 1;
-
-
-        const drivers = await Role.getUserByRole(driver_role_id, offset, PAGELIMIT, extraField);
+        const drivers = await Role.getUserByRole(roleId, offset, PAGELIMIT, extraField);
 
         const { rowCount, rows} = drivers[1];
 
