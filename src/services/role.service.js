@@ -17,7 +17,6 @@ class Role{
         role_id = ${role_id} ${status}
         LIMIT ${limit} OFFSET ${offset}  
     `
-    console.log(query);
     return  queryBuilder(query);
     }
 }
