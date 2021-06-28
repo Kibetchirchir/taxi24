@@ -23,8 +23,10 @@ CREATE TABLE trips
   id        SERIAL     NOT NULL ,
   driver_id INT     NULL    ,
   rider_id  INT     NULL    ,
-  from_location      VARCHAR NULL ,
-  to_location        VARCHAR NULL ,
+  from_lat      INT NULL ,
+  from_long      INT NULL ,
+  to_lat     INT NULL ,
+  to_long      INT NULL ,
   created_at    TIMESTAMP    NOT NULL,
   updated_at    TIMESTAMP    NOT NULL,
   PRIMARY KEY (id)
@@ -38,7 +40,8 @@ CREATE TABLE users
   phone_number  BIGINT      NOT NULL UNIQUE,
   email_adress  VARCHAR     NULL ,
   password      VARCHAR     NULL    ,
-  geo_long_lat VARCHAR     NULL ,
+  from_lat      INT NULL ,
+  from_long      INT NULL ,
   created_at    TIMESTAMP    NOT NULL,
   updated_at    TIMESTAMP    NOT NULL,
   PRIMARY KEY (id)
