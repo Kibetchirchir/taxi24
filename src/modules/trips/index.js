@@ -5,6 +5,8 @@ import Controller from './trips.controller';
 
 const router = Router();
 
-router.post('/trip/rider/:rider_id', asyncHandler(Controller.createTrip));
+router.post('/trips/riders/:rider_id', asyncHandler(Controller.createTrip));
+router.get('/trips/riders', asyncHandler(Controller.getTrip));
+
 
 export default router;

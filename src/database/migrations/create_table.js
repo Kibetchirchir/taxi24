@@ -27,6 +27,7 @@ CREATE TABLE trips
   from_long      INT NULL ,
   to_lat     INT NULL ,
   to_long      INT NULL ,
+  status VARCHAR NULL,
   created_at    TIMESTAMP    NOT NULL,
   updated_at    TIMESTAMP    NOT NULL,
   PRIMARY KEY (id)

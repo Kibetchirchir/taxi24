@@ -14,14 +14,15 @@ class DriverController {
 
         const [user] = await UserService.getUserByPhoneNumber({phone_number});
 
-        
+        const user_id = user[0].id;
+
         await Role.addRole(user_id, 1);
         
         return jsonResponse({
             res,
             status: 200,
             message: "Driver created successfully",
-            data: userData
+            data: user,
         })
     }
 
