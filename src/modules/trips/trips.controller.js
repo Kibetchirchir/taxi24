@@ -1,4 +1,4 @@
-import { OK } from "../../constants/statusCodes";
+import { OK, NOT_FOUND } from "../../constants/statusCodes";
 import jsonResponse from "../../helpers/jsonResponse";
 import TripsService from "../../services/trips.service";
 
@@ -55,6 +55,28 @@ class TripController {
       message: 'Trips',
       data: trips
     })
+  }
+
+  static async updateTrip(req, res){
+    const { trip_id, status } = req.params;
+
+    const [, tripsRes] = await TripsService.updateTripsStatus({status, id: trip_id});
+
+    const { rowCount } = tripsRes;
+
+    if( rowCount === 0){
+      return jsonResponse({
+        res,
+        status: NOT_FOUND,
+        message: 'trip not found',
+      });
+    }
+
+    return jsonResponse({
+      res,
+      status: OK,
+      message: 'trip updated',
+    });
   }
 }
 

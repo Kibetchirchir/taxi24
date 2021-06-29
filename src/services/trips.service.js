@@ -1,4 +1,4 @@
-const { queryBuilder } = require("../database/queryBuilder");
+import { queryBuilder } from "../database/queryBuilder";
 
 class TripsService {
   static async createTrip({
@@ -16,7 +16,7 @@ class TripsService {
     return queryBuilder(query);
   }
 
-  static async getTrips({where}) {
+  static async getTrips({ where }) {
     const query = `SELECT
 	trips.*,
 	riders.first_name AS riders_name,
@@ -27,6 +27,17 @@ class TripsService {
     INNER JOIN users AS drivers ON drivers.id = trips.driver_id
     ${where}
     `;
+
+    return queryBuilder(query);
+  }
+
+  static async updateTripsStatus({ id, status }) {
+    const query = `UPDATE
+      trips
+  SET
+      status = '${status}'
+  WHERE
+      id = ${id}`;
 
     return queryBuilder(query);
   }
